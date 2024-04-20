@@ -1,0 +1,36 @@
+import pygame
+import time
+
+pygame.init()
+back_color = (200, 255, 255)
+window = pygame.display.set_mode((500, 500))
+window.fill(back_color) # заповнення фону кольором
+clock = pygame.time.Clock()
+
+class Area():
+    def __init__(self, x=0, y=0, width=10, height =10, color=None):#конструктор
+        self.rect = pygame.Rect(x, y, width, height)
+        self.fill_color = colorn
+    
+    def color(self, new_color):#Задання кольору
+        self.fill_color = new_color
+
+    def fill(self): #Заповнення кольором
+        pygame.draw.rect(window, self.fill_color, self.rect)
+    
+    def outline(self, frame_color, thickness): # рамка
+        pygame.draw.rect(window, frame_color, self.rect, thickness)
+
+class Label(Area):
+    def set_text(self, Text, text_color=(0, 0, 0), fsize=12):
+        self.image = pygame.font.SysFont('verdana', fsize).render(text, True, text_color) # verdana - назва шрифту
+    
+    def draw(self, shift_x = 0, shift_y=0):
+        self.fill()
+        window.blit(self.image, (self.rect.x + shift_x, self.rect.y + shift_y))
+
+    
+    
+while True:
+    pygame.display.update()
+    clock.tick(40)
